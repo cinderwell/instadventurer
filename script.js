@@ -170,15 +170,15 @@ function draftChars()
 			roll = chance.integer({min: 1, max: 5});
 			if(tempRace.includes('Gem'))
 			{
-				results+=gemTypes[roll];
+				results+=gemTypes[roll-1];
 			}
 			else if(tempRace.includes('Metallic'))
 			{
-				results+=metallicTypes[roll];
+				results+=metallicTypes[roll-1];
 			}
 			else
 			{
-				results+=chromaticTypes[roll];
+				results+=chromaticTypes[roll-1];
 			}
 		}
 
