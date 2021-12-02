@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Instadventurer 2</title>
+  <script defer src="script.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    
+  </style>
+</head>
+<body>
+    <div style="padding: 5px" class="text-center">
+        <h1>Instadventurer 2</h1>
+        <sub>© Cinderwell 2021. All Rights Reserved.</sub>
+    </div>
+	<hr>
+    <div style="padding: 5px" class="text-center">Choose your source books:</div>
+    <div style="padding: 5px" class="text-center">
+        <input type="checkbox" id="phb" name="phb" disabled checked>
+		<label for="phb">Player's Handbook</label>
+		<br>
+		<input type="checkbox" id="dmg" name="dmg" onchange="bookChange('dmg')">
+		<label for="dmg">Dungeon Master's Guide</label>
+		<br>
+		<input type="checkbox" id="ee" name="ee" onchange="bookChange('ee')">
+		<label for="ee">Elemental Evil (minus reprints)</label>
+		<br>
+		<input type="checkbox" id="scag" name="scag" onchange="bookChange('scag')">
+		<label for="scag">Sword Coast Adventure Guide (minus reprints)</label>
+		<br>
+		<input type="checkbox" id="volo" name="volo" onchange="bookChange('volo')">
+		<label for="volo">Volo's Guide to Monsters (plus the Tortle Package)</label>
+		<br>
+		<input type="checkbox" id="mord" name="mord" onchange="bookChange('mord')">
+		<label for="mord">Mordenkainen's Tome of Foes</label>
+		<br>
+		<input type="checkbox" id="xge" name="xge" onchange="bookChange('xge')">
+		<label for="xge">Xanathar's Guide to Everything</label>
+		<br>
+		<input type="checkbox" id="tce" name="tce" onchange="bookChange('tce')">
+		<label for="tce">Tasha's Cauldron of Everything</label>
+		<br>
+		<input type="checkbox" id="van" name="van" onchange="bookChange('van')">
+		<label for="van">Van Richten's Guide to Ravenloft</label>
+		<br>
+		<input type="checkbox" id="fiz" name="fiz" onchange="bookChange('fiz')">
+		<label for="fiz">Fizban's Treasury of Dragons (minus reprints)</label>
+    </div>
+	<hr>
+	<div class="text-center">
+	
+	
+	
+	<div class="form-check">
+	  <label class="form-check-label">
+		<input type="radio" class="form-check-input" name="optradio" checked onclick="rollTypeChange(0)">Rolled Stats (4d6, drop lowest)
+	  </label>
+	</div>
+	<div class="form-check">
+	  <label class="form-check-label">
+		<input type="radio" class="form-check-input" name="optradio" onclick="rollTypeChange(1)">Rolled Stats (3d6)
+	  </label>
+	</div>
+	<div class="form-check disabled">
+	  <label class="form-check-label">
+		<input type="radio" class="form-check-input" name="optradio" onclick="rollTypeChange(2)">Random Point-Buy Array
+	  </label>
+	</div>
+	<br>
+	<label class="col-md-4 control-label" for="runs">Number of Drafts:</label>
+		<input type="number" id="runs" min="1" max="100" data-bind="value:runs" value="10" onchange="runsChange()"/>
+		
+		
+		  <label class="col-md-4 control-label" for="submit"></label>
+		  
+			<input id="submit" type="button" value="Draft It" class="btn btn-primary" onclick="draftChars()">
+		  
+		
+	</div>
+	<hr>
+    <div class="text-center" id="results">
+    </div>
+</body>
+</html>
