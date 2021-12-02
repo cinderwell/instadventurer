@@ -38,22 +38,25 @@ var mordClasses = [];
 var mordBackgrounds = [];
 var mordRaces = ['Baalzebul Tiefling<sub>mord</sub>','Dispater Tiefling<sub>mord</sub>','Fierna Tiefling<sub>mord</sub>','Glasya Tiefling<sub>mord</sub>','Levistus Tiefling<sub>mord</sub>','Mammon Tiefling<sub>mord</sub>','Mephistopheles Tiefling<sub>mord</sub>','Zariel Tiefling<sub>mord</sub>','Sea Elf<sub>mord</sub>','Shadar-Kai<sub>mord</sub>','Summer Eladrin<sub>mord</sub>','Spring Eladrin<sub>mord</sub>','Winter Eladrin<sub>mord</sub>','Autumn Eladrin<sub>mord</sub>','Githyanki<sub>mord</sub>','Githzerai<sub>mord</sub>'];
 
-var xgeClasses = [];
+//complete
+var xgeClasses = ['Ancestral Guardian Barbarian<sub>xge</sub>','Storm Herald Barbarian<sub>xge</sub>','Zealot Barbarian<sub>xge</sub>','Glamour Bard<sub>xge</sub>','Swords Bard<sub>xge</sub>','Whispers Bard<sub>xge</sub>','Forge Cleric<sub>xge</sub>','Grave Cleric<sub>xge</sub>','Arcane Archer Fighter<sub>xge</sub>','Cavalier Fighter<sub>xge</sub>','Samurai Fighter<sub>xge</sub>','Drunken Master Monk<sub>xge</sub>','Kensei Monk<sub>xge</sub>','Sun Soul Monk<sub>xge</sub>','Conquest Paladin<sub>xge</sub>','Redemption Paladin<sub>xge</sub>','Gloom Stalker Ranger<sub>xge</sub>','Horizon Walker Ranger<sub>xge</sub>','Monster Slayer Ranger<sub>xge</sub>','Inquisitive Rogue<sub>xge</sub>','Mastermind Rogue<sub>xge</sub>','Scout Rogue<sub>xge</sub>','Swashbuckler Rogue<sub>xge</sub>','Shadow Sorcerer<sub>xge</sub>','Storm Sorcerer<sub>xge</sub>','Celestial Warlock<sub>xge</sub>','Hexblade Warlock<sub>xge</sub>','War Wizard<sub>xge</sub>'];
 var xgeBackgrounds = [];
 var xgeRaces = [];
 
-var tceClasses = ['Bladesinger Wizard<sub>phb</sub>'];
+//complete
+var tceClasses = ['Bladesinger Wizard<sub>tce</sub>','Artillerist Artificer<sub>tce</sub>','Battlesmith Artificer<sub>tce</sub>','Armorer Artificer<sub>tce</sub>','Beast Barbarian<sub>tce</sub>','Wild Magic Barbarian<sub>tce</sub>','Creation Bard<sub>tce</sub>','Eloquence Bard<sub>tce</sub>','Order Cleric<sub>tce</sub>','Peace Cleric<sub>tce</sub>','Twilight Cleric<sub>tce</sub>','Spore Druid<sub>tce</sub>','Star Druid<sub>tce</sub>','Wildfire Druid<sub>tce</sub>','Psi Warrior Fighter<sub>tce</sub>','Rune Knight Fighter<sub>tce</sub>','Mercy Monk<sub>tce</sub>','Astral Self Monk<sub>tce</sub>','Glory Paladin<sub>tce</sub>','Watcher Paladin<sub>tce</sub>','Fey Wanderer Ranger<sub>tce</sub>','Swarmkeeper Ranger<sub>tce</sub>','Phantom Rogue<sub>tce</sub>','Soulknife Rogue<sub>tce</sub>','Abberant Mind Sorcerer<sub>tce</sub>','Clockwork Soul Sorcerer<sub>tce</sub>','Genie Warlock<sub>tce</sub>','Fathomless Warlock<sub>tce</sub>'];
 var tceBackgrounds = [];
 var tceRaces = [];
 
 //complete
-var vanClasses = [];
-var vanBackgrounds = [];
+var vanClasses = ['Undead Warlock<sub>van</sub>','Spirits Bard<sub>van</sub>'];
+var vanBackgrounds = ['Inheritor<sub>van</sub>','Mist Wanderer<sub>van</sub>','Spirit Medium<sub>van</sub>','Trauma Survivor<sub>van</sub>','Traveler<sub>van</sub>'];
 var vanRaces = ['Dhampir<sub>van</sub>','Hexblood<sub>van</sub>','Reborn<sub>van</sub>'];
 
-var fizClasses = [];
+//complete
+var fizClasses = ['Drakewarden Ranger<sub>fiz</sub>','Ascendant Dragon Monk<sub>fiz</sub>'];
 var fizBackgrounds = [];
-var fizRaces = [];
+var fizRaces = ['Gem Dragonborn<sub>fiz</sub>'];
 
 var currClasses = [];
 currClasses.push(...phbClasses);
@@ -71,7 +74,8 @@ function filterItems(arr, query) {
   })
 }
 
-async function getRandom(ceiling) {
+function getRandom(ceiling) {
+	/*
 	var api_url = 'https://www.random.org/integers/?num=1&min=1&max='+ceiling+'&col=1&base=10&format=plain&rnd=new'
 	
 	try {
@@ -80,25 +84,43 @@ async function getRandom(ceiling) {
     } catch (error) {
         console.log(error);
     }
+	*/
 }
 
 function statArray(mode) {
+
 }
 
-async function draftChars()
+function draftChars()
 {
+	let results = '';
 	for (let i = 0; i < runs; i++)
 	{
+		
 		//if Metallic or Chromatic, find a color
+		let roll = chance.integer({min: 1, max: currRaces.length});
+		let tempRace = currRaces[roll-1];
+
+		results+=tempRace;
+		results+=' ';
 		
 		//Randomly choose a class first, then roll for archetype
-		let roll = await getRandom(baseClasses.length);
-		let tempClass = baseClasses[parseInt(roll)-1];
+		//let roll = await getRandom(baseClasses.length);
+		roll = chance.integer({min: 1, max: baseClasses.length});
+		let tempClass = baseClasses[roll-1];
+		console.log(currClasses);
 		let tempOptions = filterItems(currClasses, tempClass);
-		let roll2 = await getRandom(tempOptions.length);
-		let tempArchetype = tempOptions[parseInt(roll2)-1];
-		console.log(tempArchetype);
+		console.log(tempOptions);
+		//let roll2 = await getRandom(tempOptions.length);
+		roll = chance.integer({min: 1, max: tempOptions.length});
+		let tempArchetype = tempOptions[roll-1];
+		//console.log(tempArchetype);
+		results+=tempArchetype;
+		results+='<br>';
+
+		document.getElementById("results").innerHTML = results;
 	}
+	
 };
 
 function rollTypeChange(type)
@@ -133,9 +155,9 @@ function bookChange(target) {
     console.log(currBooks);
 	
 	//refresh pool arrays
-	var currClasses = [];
-	var currRaces = [];
-	var currBackgrounds = [];
+	currClasses = [];
+	currRaces = [];
+	currBackgrounds = [];
 	
 	if(currBooks.includes('phb'))
 	{
