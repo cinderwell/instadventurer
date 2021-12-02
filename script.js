@@ -1,6 +1,6 @@
 var debug = false;
 var runs = 10;
-var rollType = 0;
+var rollType = 2;
 
 var currBooks = ['phb'];
 
@@ -9,6 +9,10 @@ var selectedBooks = 1;
 var baseClasses = ['Wizard','Warlock','Cleric','Druid','Monk','Ranger','Paladin','Sorcerer','Fighter','Rogue','Bard','Barbarian'];
 var tempBaseClasses = [];
 
+var pointBuys = ['(15, 15, 15, 8, 8, 8)','(15, 15, 14, 10, 8, 8)','(15, 15, 14, 9, 9, 8)','(15, 15, 13, 12, 8, 8)','(15, 15, 13, 11, 9, 8)','(15, 15, 13, 10, 10, 8)','(15, 15, 13, 10, 9, 9)',
+'(15, 15, 12, 12, 9, 8)','(15, 15, 12, 11, 10, 8)','(15, 15, 12, 11, 9, 9)','(15, 15, 12, 10, 10, 9)','(15, 15, 11, 11, 11, 8)','(15, 15, 11, 11, 10, 9)','(15, 15, 11, 10, 10, 10)','(15, 14, 14, 12, 8, 8)','(15, 14, 14, 11, 9, 8)','(15, 14, 14, 10, 10, 8)','(15, 14, 14, 10, 9, 9)','(15, 14, 13, 13, 9, 8)','(15, 14, 13, 12, 10, 8)','(15, 14, 13, 12, 9, 9)','(15, 14, 13, 11, 11, 8)','(15, 14, 13, 11, 10, 9)','(15, 14, 13, 10, 10, 10)','(15, 14, 12, 12, 11, 8)','(15, 14, 12, 12, 10, 9)','(15, 14, 12, 11, 11, 9)','(15, 14, 12, 11, 10, 10)','(15, 14, 11, 11, 11, 10)','(15, 13, 13, 13, 11, 8)','(15, 13, 13, 13, 10, 9)','(15, 13, 13, 12, 12, 8)','(15, 13, 13, 12, 11, 9)','(15, 13, 13, 12, 10, 10)','(15, 13, 13, 11, 11, 10)','(15, 13, 12, 12, 12, 9)','(15, 13, 12, 12, 11, 10)','(15, 13, 12, 11, 11, 11)','(15, 12, 12, 12, 12, 10)','(15, 12, 12, 12, 11, 11)','(14, 14, 14, 13, 9, 8)','(14, 14, 14, 12, 10, 8)','(14, 14, 14, 12, 9, 9)','(14, 14, 14, 11, 11, 8)','(14, 14, 14, 11, 10, 9)','(14, 14, 14, 10, 10, 10)','(14, 14, 13, 13, 11, 8)','(14, 14, 13, 13, 10, 9)','(14, 14, 13, 12, 12, 8)','(14, 14, 13, 12, 11, 9)','(14, 14, 13, 12, 10, 10)','(14, 14, 13, 11, 11, 10)','(14, 14, 12, 12, 12, 9)','(14, 14, 12, 12, 11, 10)','(14, 14, 12, 11, 11, 11)','(14, 13, 13, 13, 13, 8)','(14, 13, 13, 13, 12, 9)','(14, 13, 13, 13, 11, 10)','(14, 13, 13, 12, 12, 10)','(14, 13, 13, 12, 11, 11)','(14, 13, 12, 12, 12, 11)','(14, 12, 12, 12, 12, 12)','(13, 13, 13, 13, 13, 10)','(13, 13, 13, 13, 12, 11)','(13, 13, 13, 12, 12, 12)'];
+
+//complete
 var phbClasses = ['Transmutation Wizard<sub>phb</sub>','Necromancy Wizard<sub>phb</sub>','Illusion Wizard<sub>phb</sub>','Evocation Wizard<sub>phb</sub>','Enchantment Wizard<sub>phb</sub>','Divination Wizard<sub>phb</sub>','Conjuration Wizard<sub>phb</sub>','Abjuration Wizard<sub>phb</sub>','Great Old One Warlock<sub>phb</sub>','Fiend Warlock<sub>phb</sub>','Archfey Warlock<sub>phb</sub>','Wild Magic Sorcerer<sub>phb</sub>','Draconic Sorcerer<sub>phb</sub>','Arcane Trickster Rogue<sub>phb</sub>','Assassin Rogue<sub>phb</sub>','Thief Rogue<sub>phb</sub>','Beast Master Ranger<sub>phb</sub>','Hunter Ranger<sub>phb</sub>','Vengeance Paladin<sub>phb</sub>','Ancients Paladin<sub>phb</sub>','Devotion Paladin<sub>phb</sub>','Four Elements Monk<sub>phb</sub>','Shadow Monk<sub>phb</sub>','Open Hand Monk<sub>phb</sub>','Champion Fighter<sub>phb</sub>','Battlemaster Fighter<sub>phb</sub>','Eldritch Knight Fighter<sub>phb</sub>','Land Druid<sub>phb</sub>','Moon Druid<sub>phb</sub>','War Cleric<sub>phb</sub>','Trickery Cleric<sub>phb</sub>','Tempest Cleric<sub>phb</sub>','Nature Cleric<sub>phb</sub>','Life Cleric<sub>phb</sub>','Knowledge Cleric<sub>phb</sub>','Light Cleric<sub>phb</sub>','Totem Barbarian<sub>phb</sub>','Berserker Barbarian<sub>phb</sub>','Lore Bard<sub>phb</sub>','Valor Bard<sub>phb</sub>'];
 var phbBackgrounds = ['Acolyte<sub>phb</sub>','Entertainer<sub>phb</sub>','Charlatan<sub>phb</sub>','Criminal<sub>phb</sub>','Folk Hero<sub>phb</sub>','Guild Artisan<sub>phb</sub>','Hermit<sub>phb</sub>','Noble<sub>phb</sub>','Outlander<sub>phb</sub>','Sage<sub>phb</sub>','Sailor<sub>phb</sub>','Soldier<sub>phb</sub>','Urchin<sub>phb</sub>'];
 var phbRaces = ['Hill Dwarf<sub>phb</sub>','Mountain Dwarf<sub>phb</sub>','Human<sub>phb</sub>','Variant Human<sub>phb</sub>','Stout Halfling<sub>phb</sub>','Lightfoot Halfling<sub>phb</sub>','High Elf<sub>phb</sub>','Wood Elf<sub>phb</sub>','Half-Elf<sub>phb</sub>','Half-Orc<sub>phb</sub>','Rock Gnome<sub>phb</sub>','Forest Gnome<sub>phb</sub>','Tiefling<sub>phb</sub>','Chromatic Dragonborn<sub>phb</sub>','Metallic Dragonborn<sub>phb</sub>'];
@@ -87,8 +91,53 @@ function getRandom(ceiling) {
 	*/
 }
 
-function statArray(mode) {
+function statArray() {
 
+	if(rollType == 2)
+	{
+		let roll = chance.integer({min: 1, max: pointBuys.length});
+		return pointBuys[roll-1];
+	}
+	else if(rollType == 1)
+	{
+		let tempArray = '(';
+		for(let i = 0; i < 6; i++)
+		{
+			let tempStat = chance.integer({min: 1, max: 6})+chance.integer({min: 1, max: 6})+chance.integer({min: 1, max: 6});
+			tempArray+=tempStat;
+			if(i != 5)
+			{
+				tempArray+=', ';
+			}
+		}
+		tempArray+=')';
+		return tempArray;
+
+	}
+	else
+	{
+		let tempArray = '(';
+		for(let i = 0; i < 6; i++)
+		{
+			let tempRolls = [];
+			tempRolls.push(chance.integer({min: 1, max: 6}));
+			tempRolls.push(chance.integer({min: 1, max: 6}));
+			tempRolls.push(chance.integer({min: 1, max: 6}));
+			tempRolls.push(chance.integer({min: 1, max: 6}));
+			//console.log(tempRolls);
+			tempRolls.splice(tempRolls.indexOf(Math.min(...tempRolls)),1);
+			//console.log(tempRolls);
+			let tempStat = tempRolls[0]+tempRolls[1]+tempRolls[2];
+			tempArray+=tempStat;
+			if(i != 5)
+			{
+				tempArray+=', ';
+			}
+		}
+		tempArray+=')';
+		return tempArray;
+
+	}
 }
 
 function draftChars()
@@ -116,6 +165,12 @@ function draftChars()
 		let tempArchetype = tempOptions[roll-1];
 		//console.log(tempArchetype);
 		results+=tempArchetype;
+		results+=' ';
+		results+=statArray();
+		results+=' ';
+		roll = chance.integer({min: 1, max: currBackgrounds.length});
+		let tempBackground = currBackgrounds[roll-1];
+		results+=tempBackground;
 		results+='<br>';
 
 		document.getElementById("results").innerHTML = results;
