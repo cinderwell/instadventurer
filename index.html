@@ -48,6 +48,12 @@
 		<br>
 		<input type="checkbox" id="fiz" name="fiz" onchange="bookChange('fiz')">
 		<label for="fiz">Fizban's Treasury of Dragons (minus reprints)</label>
+		<hr>
+		<input type="checkbox" id="rav" name="rav" onchange="bookChange('rav')">
+		<label for="rav">Guildmaster's Guide to Ravnica (minus reprints)</label>
+		<br>
+		<input type="checkbox" id="theros" name="theros" onchange="bookChange('theros')">
+		<label for="theros">Mystic Odysseys of Theros (minus reprints)</label>
     </div>
 	<hr>
 	<div class="text-center">
@@ -70,11 +76,11 @@
 	  </label>
 	</div>
 	<br>
-	<label class="col-md-4 control-label" for="runs">Number of Drafts:</label>
+	<label class="text-center control-label" for="runs">Number of Drafts:</label>
 		<input type="number" id="runs" min="1" max="100" data-bind="value:runs" value="10" onchange="runsChange()"/>
 		
 		
-		  <label class="col-md-4 control-label" for="submit"></label>
+		  <label class="text-center control-label" for="submit"></label>
 		  
 			<input id="submit" type="button" value="Draft It" class="btn btn-primary" onclick="draftChars()">
 		  
@@ -84,5 +90,6 @@
     <div class="text-center" id="results">
 
     </div>
+	<hr>
 </body>
 </html>

@@ -1,6 +1,6 @@
 var debug = false;
 var runs = 10;
-var rollType = 2;
+var rollType = 0;
 
 var currBooks = ['phb'];
 
@@ -61,6 +61,20 @@ var vanRaces = ['Dhampir<sub>van</sub>','Hexblood<sub>van</sub>','Reborn<sub>van
 var fizClasses = ['Drakewarden Ranger<sub>fiz</sub>','Ascendant Dragon Monk<sub>fiz</sub>'];
 var fizBackgrounds = [];
 var fizRaces = ['Gem Dragonborn<sub>fiz</sub>'];
+
+//complete
+var ravClasses = [];
+var ravBackgrounds = [];
+var ravRaces = ['Symic Hybrid<sub>rav</sub>','Loxodon<sub>rav</sub>','Vedalken<sub>rav</sub>'];
+
+//complete
+var therosClasses = [];
+var therosBackgrounds = ['Athlete<sub>theros</sub>'];
+var therosRaces = ['Minotaur<sub>theros</sub>','Centaur<sub>theros</sub>','Satyr<sub>theros</sub>','Leonin<sub>theros</sub>'];
+
+var gemTypes = ['Amethyst ','Crystal ','Emerald ','Sapphire ','Topaz '];
+var chromaticTypes = ['Black ','Blue ','Green ','Red ','White '];
+var metallicTypes = ['Brass ','Bronze ','Copper ','Gold ','Silver '];
 
 var currClasses = [];
 currClasses.push(...phbClasses);
@@ -146,9 +160,27 @@ function draftChars()
 	for (let i = 0; i < runs; i++)
 	{
 		
-		//if Metallic or Chromatic, find a color
+		
 		let roll = chance.integer({min: 1, max: currRaces.length});
 		let tempRace = currRaces[roll-1];
+
+		//if Metallic, Gem, or Chromatic, find a color
+		if(tempRace.includes('Dragonborn'))
+		{
+			roll = chance.integer({min: 1, max: 5});
+			if(tempRace.includes('Gem'))
+			{
+				results+=gemTypes[roll];
+			}
+			else if(tempRace.includes('Metallic'))
+			{
+				results+=metallicTypes[roll];
+			}
+			else
+			{
+				results+=chromaticTypes[roll];
+			}
+		}
 
 		results+=tempRace;
 		results+=' ';
@@ -292,6 +324,20 @@ function bookChange(target) {
 		currClasses.push(...fizClasses);
 		currRaces.push(...fizRaces);
 		currBackgrounds.push(...fizBackgrounds);
+	}
+
+	if(currBooks.includes('rav'))
+	{
+		currClasses.push(...ravClasses);
+		currRaces.push(...ravRaces);
+		currBackgrounds.push(...ravBackgrounds);
+	}
+
+	if(currBooks.includes('theros'))
+	{
+		currClasses.push(...therosClasses);
+		currRaces.push(...therosRaces);
+		currBackgrounds.push(...therosBackgrounds);
 	}
 	
 	console.log(currClasses);
